@@ -61,7 +61,7 @@ export const SignUp = (props) => {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleInputPassword1" className="form-label">Comfirm Password</label>
-                    <input value={credentials.password} type="password" className="form-control" id="c_password" placeholder="Please re-type the password" onChange={onChange} minLength={5} />
+                    <input type="password" className="form-control" id="c_password" placeholder="Please re-type the password" onChange={onChange} minLength={5} />
                 </div>
 
                 <button type="submit" className="btn btn-primary">Sign Up</button>
