@@ -3,6 +3,7 @@ import noteContext from "../context/notes/NoteContext"
 import { AddNote } from './AddNote';
 import { NoteItem } from './NoteItem';
 import { useNavigate } from "react-router-dom"
+import themeContext from '../context/theme/ThemeContext';
 
 export const Notes = (props) => {
     const context = useContext(noteContext);
@@ -44,6 +45,12 @@ export const Notes = (props) => {
         setNote({...note, [e.target.id]: e.target.value})
     }
 
+    const {darkMode} = useContext(themeContext)
+    let myStyle = {
+        backgroundColor: "#505157",
+        color:"white"
+    }
+    
     return (
         <div className='container'>
             <AddNote showAlert_prop={props.showAlert_prop}/>
@@ -53,27 +60,26 @@ export const Notes = (props) => {
             </button>
 
             {/* <!-- Modal --> */}
-            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog">
-                    <div className="modal-content">
+            <div className="modal fade " id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog ">
+                    <div className={darkMode?"text-white bg-secondary modal-content":"modal-content"}>
                         <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Edit Note</h5>
+                            <h3 className="modal-title" id="exampleModalLabel">Edit Note</h3>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
                             <div className="w-50 mx-auto">
-                                <h1>Add a note </h1>
                                 <div className="mb-3">
                                     <label htmlFor="title" className="form-label">Title</label>
-                                    <input type="text" className="form-control" id="e_title" placeholder="Minimum 3 charachters" value={note.e_title} onChange={onChange} />
+                                    <input type="text" className="form-control" id="e_title" placeholder="Minimum 3 charachters" value={note.e_title} onChange={onChange} style={darkMode?myStyle:null}/>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="description" className="form-label">Description</label>
-                                    <textarea className="form-control" id="e_description" rows="3" placeholder="Minimum 5 charachters" value={note.e_description} onChange={onChange}></textarea>
+                                    <textarea className="form-control" id="e_description" rows="3" placeholder="Minimum 5 charachters" value={note.e_description} onChange={onChange} style={darkMode?myStyle:null}></textarea>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="tag" className="form-label">Tag</label>
-                                    <input type="text" className="form-control" id="e_tag" placeholder="Minimum 3 charachters" value={note.e_tag} onChange={onChange} />
+                                    <input type="text" className="form-control" id="e_tag" placeholder="Minimum 3 charachters" value={note.e_tag} onChange={onChange} style={darkMode?myStyle:null}/>
                                 </div>
                             </div>
 

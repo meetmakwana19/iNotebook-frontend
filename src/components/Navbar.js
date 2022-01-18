@@ -1,5 +1,6 @@
 import { React, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import ThemeBtn from './ThemeBtn';
 
 export const Navbar = () => {
     let location = useLocation();
@@ -17,7 +18,7 @@ export const Navbar = () => {
         <div>
             <nav className="navbar navbar-expand-lg navbar-light bg-warning fixed-top">
                 <div className="container-fluid">
-                    <Link className="navbar-brand" to="/">Navbar</Link>
+                    <Link className="navbar-brand" to="/">Note-It</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -34,6 +35,7 @@ export const Navbar = () => {
                         <Link className="btn btn-primary mx-1" to="/signin" role="button">Sign in</Link>    
                         <Link className="btn btn-primary mx-1" to="signup" role="button">Sign up</Link>                        
                         </form> : <Link className="btn btn-primary mx-1" to="signin" role="button" onClick={handleOnSignOut}>Sign out</Link>}
+                        <ThemeBtn/>
                     </div>
                 </div>
             </nav>

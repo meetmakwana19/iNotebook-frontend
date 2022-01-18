@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import noteContext from "../context/notes/NoteContext"
+import themeContext from '../context/theme/ThemeContext';
 
 export const NoteItem = (props) => {
 
@@ -9,11 +10,13 @@ export const NoteItem = (props) => {
     const context = useContext(noteContext);
     const { deleteNote } = context;
 
+    const {darkMode} = useContext(themeContext);
+
     return (
         // Want 3 columns, so 12/3=4
         <div className='col-md-4'>
-            <div className="card my-2">
-                <div className="card-header text-dark bg-warning">
+            <div className={darkMode? "card my-2 text-white bg-dark": "card my-2"}>
+                <div className="card-header text-dark bg-warning" >
                     <i className="fas fa-tag me-3"></i>
                     {note_prop.tag}
                 </div>

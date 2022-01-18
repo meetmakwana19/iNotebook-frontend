@@ -11,9 +11,14 @@ import NoteState from './context/notes/NoteState';
 import { Alert } from './components/Alert';
 import { SignUp } from './components/SignUp';
 import { SignIn } from './components/SignIn';
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import themeContext from './context/theme/ThemeContext';
 
 function App() {
+
+  const {darkMode} = useContext(themeContext)
+  console.log("Dark mode = " + darkMode);
+  
   const [alert, setAlert] = useState(null); //alert will be by default null
   const showAlert = (message, type) => { //showAlert func will take 2 parameters- message, type
       // will try to set alert using  this func where setAlert here is the object.
@@ -26,6 +31,8 @@ function App() {
           setAlert(null);
       }, 2000)
   }
+
+
 
   return (
     <>

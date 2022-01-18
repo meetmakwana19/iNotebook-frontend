@@ -1,5 +1,6 @@
-import { React, useState } from "react"
+import { React, useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import themeContext from "../context/theme/ThemeContext";
 
 export const SignUp = (props) => {
 
@@ -42,26 +43,31 @@ export const SignUp = (props) => {
         setCredentials({ ...credentials, [e.target.id]: e.target.value })
     }
 
+    const {darkMode} = useContext(themeContext)
+    let myStyle = {
+        backgroundColor: "#505157",
+        color:"white"
+    }
     return (
         <div style={{marginTop:"120px"}}>
             <h2>Sign up</h2>
             <form onSubmit={handleOnSubmit} className="my-3">
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Name</label>
-                    <input value={credentials.name} type="text" className="form-control" id="name" placeholder="Minimum 3 characters name" onChange={onChange} minLength={3} />
+                    <input value={credentials.name} type="text" className="form-control" id="name" placeholder="Minimum 3 characters name" onChange={onChange} minLength={3} style={darkMode?myStyle:null} />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                    <input value={credentials.email} type="email" className="form-control" id="email" aria-describedby="emailHelp" onChange={onChange} placeholder="Please enter a valid email" />
+                    <input value={credentials.email} type="email" className="form-control" id="email" aria-describedby="emailHelp" onChange={onChange} placeholder="Please enter a valid email" style={darkMode?myStyle:null} />
                     <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                    <input value={credentials.password} type="password" className="form-control" id="password" placeholder="Minimum 5 characters password" onChange={onChange} minLength={5} />
+                    <input value={credentials.password} type="password" className="form-control" id="password" placeholder="Minimum 5 characters password" onChange={onChange} minLength={5} style={darkMode?myStyle:null}/>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleInputPassword1" className="form-label">Comfirm Password</label>
-                    <input type="password" className="form-control" id="c_password" placeholder="Please re-type the password" onChange={onChange} minLength={5} />
+                    <input value={credentials.password} type="password" className="form-control" id="c_password" placeholder="Please re-type the password" onChange={onChange} minLength={5} style={darkMode?myStyle:null}/>
                 </div>
 
                 <button type="submit" className="btn btn-primary">Sign Up</button>

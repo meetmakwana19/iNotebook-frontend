@@ -1,5 +1,6 @@
-import { React, useState } from "react"
+import { React, useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import themeContext from "../context/theme/ThemeContext";
 
 export const SignIn = (props) => {
 
@@ -39,18 +40,25 @@ export const SignIn = (props) => {
         setCredentials({...credentials, [e.target.id]: e.target.value})
     }
 
+    const {darkMode} = useContext(themeContext)
+
+    let myStyle = {
+        backgroundColor: "#505157",
+        color:"white",
+    }
+
     return (
         <div style={{marginTop:"120px"}}>
             <h2>Sign in</h2>
-            <form onSubmit={handleOnSubmit} className="my-3" >
+            <form onSubmit={handleOnSubmit} className="my-3">
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                    <input value={credentials.email} type="email" className="form-control" id="email" aria-describedby="emailHelp" onChange={onChange} />
+                    <input value={credentials.email} type="email" className="form-control" id="email" aria-describedby="emailHelp" onChange={onChange} style={darkMode?myStyle:null}/>
                     <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                    <input value={credentials.password} type="password" className="form-control" id="password" onChange={onChange}  />
+                    <input value={credentials.password} type="password" className="form-control" id="password" onChange={onChange} style={darkMode ? myStyle:null} />
                 </div>
                 
                 <button type="submit" className="btn btn-primary">Sign in</button>

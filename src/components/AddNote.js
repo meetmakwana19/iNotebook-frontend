@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 import noteContext from "../context/notes/NoteContext"
+import themeContext from '../context/theme/ThemeContext';
 
 
 export const AddNote = (props) => {
@@ -20,21 +21,26 @@ export const AddNote = (props) => {
         setNote({...note, [e.target.id]: e.target.value})
     }
 
+    const {darkMode} = useContext(themeContext)
+    let myStyle = {
+        backgroundColor: "#505157",
+        color:"white"
+    }
     return (
         <div>
             <div className="w-50 mx-auto" style={{marginTop:"120px"}}>
                 <h1>Add a note </h1>
                 <div className="mb-3">
                     <label htmlFor="title" className="form-label">Title <span style={{color:"red", fontWeight:"bolder"}}>*</span></label>
-                    <input type="text" className="form-control" id="title" placeholder="Minimum 3 charachters" onChange={onChange} minLength={3} required value={note.title}/>
+                    <input type="text" className="form-control" id="title" placeholder="Minimum 3 charachters" onChange={onChange} minLength={3} required value={note.title} style={darkMode?myStyle:null}/>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="description" className="form-label">Description <span style={{color:"red", fontWeight:"bolder"}}>*</span></label>
-                    <textarea className="form-control" id="description" rows="3" placeholder="Minimum 5 charachters" onChange={onChange} minLength={5} required value={note.description}></textarea>
+                    <textarea className="form-control" id="description" rows="3" placeholder="Minimum 5 charachters" onChange={onChange} minLength={5} required value={note.description} style={darkMode?myStyle:null}></textarea>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="tag" className="form-label">Tag <span style={{color:"red", fontWeight:"bolder"}}>*</span></label>
-                    <input type="text" className="form-control" id="tag" placeholder="Minimum 3 charachters" onChange={onChange} value={note.tag} />
+                    <input type="text" className="form-control" id="tag" placeholder="Minimum 3 charachters" onChange={onChange} value={note.tag} style={darkMode?myStyle:null}/>
                 </div>
                 <button disabled={note.title.length<3 || note.description.length<5} type="submit" className="btn btn-primary" onClick={handleOnAdd}>Add</button>
             </div>
