@@ -23,15 +23,15 @@ export const SignUp = (props) => {
             // body: JSON.stringify({ name: credentials.name, email: credentials.email, password: credentials.password }) // body data type must match "Content-Type" header
         });
         const resp = await response.json();
-        console.log(resp);
-        if (resp.success){
+        // console.log(resp);
+        if (resp.success) {
             // redirect by saving the auth-token
             localStorage.setItem("token", resp.authToken)
             // will navigate to the "/" endpoint which is the Home.js
             navigate("/")
             props.showAlert_prop("Account created successfully", "success")
         }
-        else{
+        else {
             // alert('User already exists with this email')
             props.showAlert_prop("User already exists with this email", "danger")
         }
@@ -43,31 +43,31 @@ export const SignUp = (props) => {
         setCredentials({ ...credentials, [e.target.id]: e.target.value })
     }
 
-    const {darkMode} = useContext(themeContext)
+    const { darkMode } = useContext(themeContext)
     let myStyle = {
         backgroundColor: "#505157",
-        color:"white"
+        color: "white"
     }
     return (
-        <div style={{marginTop:"120px"}}>
+        <div style={{ marginTop: "120px" }}>
             <h2>Sign up</h2>
             <form onSubmit={handleOnSubmit} className="my-3">
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Name</label>
-                    <input value={credentials.name} type="text" className="form-control" id="name" placeholder="Minimum 3 characters name" onChange={onChange} minLength={3} style={darkMode?myStyle:null} />
+                    <input value={credentials.name} type="text" className="form-control" id="name" placeholder="Minimum 3 characters name" onChange={onChange} minLength={3} style={darkMode ? myStyle : null} />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                    <input value={credentials.email} type="email" className="form-control" id="email" aria-describedby="emailHelp" onChange={onChange} placeholder="Please enter a valid email" style={darkMode?myStyle:null} />
+                    <input value={credentials.email} type="email" className="form-control" id="email" aria-describedby="emailHelp" onChange={onChange} placeholder="Please enter a valid email" style={darkMode ? myStyle : null} />
                     <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                    <input value={credentials.password} type="password" className="form-control" id="password" placeholder="Minimum 5 characters password" onChange={onChange} minLength={5} style={darkMode?myStyle:null}/>
+                    <input value={credentials.password} type="password" className="form-control" id="password" placeholder="Minimum 5 characters password" onChange={onChange} minLength={5} style={darkMode ? myStyle : null} />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleInputPassword1" className="form-label">Comfirm Password</label>
-                    <input value={credentials.password} type="password" className="form-control" id="c_password" placeholder="Please re-type the password" onChange={onChange} minLength={5} style={darkMode?myStyle:null}/>
+                    <input value={credentials.password} type="password" className="form-control" id="c_password" placeholder="Please re-type the password" onChange={onChange} minLength={5} style={darkMode ? myStyle : null} />
                 </div>
 
                 <button type="submit" className="btn btn-primary">Sign Up</button>
