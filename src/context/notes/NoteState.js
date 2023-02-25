@@ -4,7 +4,7 @@ import noteContext from "./NoteContext";
 
 // This will provide all the states of a note.
 const NoteState = (props) => {
-    const host = "https://note-it-backend-api.herokuapp.com"
+    const host = process.env.REACT_APP_ROOT_URL
     // const state1 = {
     //     "name": "Meet",
     //     "sub": "English"
@@ -57,7 +57,7 @@ const NoteState = (props) => {
             // sending title, description, tag in the body
             body: JSON.stringify({ title, description, tag }) // body data type must match "Content-Type" header
         });
-        
+
         console.log("Adding a new note");
         const newNote = await response.json();
         console.log(newNote);
@@ -104,7 +104,7 @@ const NoteState = (props) => {
 
         // cannot directly update the state "notes" so parsing it in JSON into a variable and then setting it to update
         let updatedNote = JSON.parse(JSON.stringify(notes))
-        
+
         // Logic to edit on the client side
         for (let index = 0; index < updatedNote.length; index++) {
             const element = updatedNote[index];

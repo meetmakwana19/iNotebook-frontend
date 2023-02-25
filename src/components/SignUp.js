@@ -2,6 +2,8 @@ import { React, useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import themeContext from "../context/theme/ThemeContext";
 
+const ROOT = process.env.REACT_APP_ROOT_URL;
+
 export const SignUp = (props) => {
 
     const [credentials, setCredentials] = useState({ name: "", email: "", password: "", c_password: "" })
@@ -13,7 +15,8 @@ export const SignUp = (props) => {
         // remove them out from credentials using destructuring
         const { name, email, password } = credentials;
         // API Call
-        const response = await fetch(`https://note-it-backend-api.herokuapp.com/api/auth/createUser`, {
+        // const response = await fetch(`http://localhost:5000/api/auth/createUser`, {
+        const response = await fetch(`${ROOT}/api/auth/createUser`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

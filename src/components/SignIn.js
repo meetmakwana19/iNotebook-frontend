@@ -2,6 +2,9 @@ import { React, useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import themeContext from "../context/theme/ThemeContext";
 
+const ROOT = process.env.REACT_APP_ROOT_URL;
+// console.log("env url is................." + ROOT);
+
 export const SignIn = (props) => {
 
     const [credentials, setCredentials] = useState({ email: "", password: "" })
@@ -11,7 +14,8 @@ export const SignIn = (props) => {
     const handleOnSubmit = async (e) => {
         e.preventDefault();
         // API Call
-        const response = await fetch(`https://note-it-backend-api.herokuapp.com/api/auth/login`, {
+        // const response = await fetch(`http://localhost:5000/api/auth/login`, {
+        const response = await fetch(`${ROOT}/api/auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
